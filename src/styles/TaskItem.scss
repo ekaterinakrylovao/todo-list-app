@@ -1,0 +1,47 @@
+.task-item {
+  border: 1px solid #ccc;
+  padding: 20px;
+  margin: 10px;
+  width: 80%;
+  text-align: left;
+  position: relative;
+  box-sizing: border-box;
+
+  h3 {
+    margin: 0 0 10px 0;
+    word-wrap: break-word;
+  }
+
+  p {
+    margin: 5px 0;
+    word-wrap: break-word;
+  }
+
+  button {
+    margin: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+
+  .task-edit-form {
+    display: flex;
+    flex-direction: column;
+
+    input, textarea {
+      margin: 10px 0;
+      padding: 10px;
+      box-sizing: border-box;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    button {
+      margin: 10px 0;
+      padding: 10px 20px;
+      cursor: pointer;
+    }
+  }
+}
