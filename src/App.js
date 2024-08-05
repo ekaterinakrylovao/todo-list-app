@@ -17,7 +17,7 @@ const App = () => {
     }, [tasks]);
 
     const addTask = (task) => {
-        setTasks([...tasks, { ...task, id: Date.now() }]);
+        setTasks([...tasks, { ...task, id: Date.now(), completed: false }]);
     };
 
     const updateTask = (updatedTask) => {
@@ -29,11 +29,14 @@ const App = () => {
     };
 
     const filteredTasks = tasks.filter(task => {
+        const currentDate = new Date().toISOString().split('T')[0];
+        const taskDueDate = task.dueDate;
+
         if (filter === 'completed') {
-            return task.completed;
+            return taskDueDate < currentDate;
         }
         if (filter === 'incomplete') {
-            return !task.completed;
+            return taskDueDate >= currentDate;
         }
         return true;
     });
@@ -49,7 +52,7 @@ const App = () => {
         <div className="app">
             <div className="Box">
                 <h1>Список задач</h1>
-                <TaskForm addTask={addTask}/>
+                <TaskForm addTask={addTask} />
                 <div>
                     <button onClick={() => setFilter('all')}>Все</button>
                     <button onClick={() => setFilter('completed')}>Завершенные</button>
@@ -59,7 +62,7 @@ const App = () => {
                     <button onClick={() => setSortOrder('asc')}>По возрастанию</button>
                     <button onClick={() => setSortOrder('desc')}>По убыванию</button>
                 </div>
-                <TaskList tasks={sortedTasks} updateTask={updateTask} deleteTask={deleteTask}/>
+                <TaskList tasks={sortedTasks} updateTask={updateTask} deleteTask={deleteTask} />
             </div>
         </div>
     );
